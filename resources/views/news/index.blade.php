@@ -8,10 +8,12 @@
                     <h5 class="card-title">{{ $headline->title }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{ $headline->category->name }}</h6>
                     <p class="card-text">{{ str($headline->text)->wordWrap() }}</p>
-                    <a href="#" class="card-link">Прочитать</a>
+                    <a href="{{ route('news.show', $headline->id) }}" class="card-link">Прочитать</a>
                 </div>
             </div>
         @endforeach
+
+        {{ $news->links() }}
     @else
         <p>Новостей нет</p>
     @endif

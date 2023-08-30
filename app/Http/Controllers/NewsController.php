@@ -13,7 +13,14 @@ class NewsController extends Controller
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('news.index', [
-            'news' => News::all(),
+            'news' => News::query()->paginate(),
+        ]);
+    }
+
+    public function show(News $news): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('news.show', [
+            'news' => $news,
         ]);
     }
 }

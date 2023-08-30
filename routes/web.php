@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [NewsController::class, 'index']);
+Route::get('/{news}', [NewsController::class, 'show'])->name('news.show');

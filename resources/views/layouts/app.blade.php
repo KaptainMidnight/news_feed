@@ -8,7 +8,7 @@
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body class="antialiased">
+<body class="antialiased container">
     @yield('content')
 </body>
 </html>
