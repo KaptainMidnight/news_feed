@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\News;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,6 +15,7 @@ class NewsController extends Controller
     {
         return view('news.index', [
             'news' => News::query()->paginate(),
+            'categories' => Category::all(),
         ]);
     }
 
@@ -21,6 +23,14 @@ class NewsController extends Controller
     {
         return view('news.show', [
             'news' => $news,
+        ]);
+    }
+
+    public function filter(Category $category): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('news.index', [
+            'news' => $category->news()->paginate(),
+            'categories' => Category::all(),
         ]);
     }
 }
