@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\NewsController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');
+});
 Route::get('/', [NewsController::class, 'index'])->name('news.index');
 Route::get('/{news}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/filter/{category}', [NewsController::class, 'filter'])->name('news.filter');
+
+Auth::routes();
