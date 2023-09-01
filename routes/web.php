@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('manager/create', [ManagerController::class, 'create'])->name('manager.create');
+    Route::post('/manager', [ManagerController::class, 'store'])->name('manager.store');
     Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');
     Route::get('/manager/{news}/edit', [ManagerController::class, 'edit'])->name('manager.edit');
     Route::post('/manager/{news}', [ManagerController::class, 'update'])->name('manager.update');

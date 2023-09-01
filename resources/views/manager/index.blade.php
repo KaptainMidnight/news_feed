@@ -10,6 +10,12 @@
                             <h2 class="text-center">Список новостей</h2>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a class="btn btn-primary mb-2" href="{{ route('manager.create') }}">Добавить новость</a>
+                        </div>
+                    </div>
                 </div>
                 <table class="table table-bordered">
                     <thead>

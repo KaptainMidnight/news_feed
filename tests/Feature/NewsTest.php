@@ -2,32 +2,50 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\News;
 use Tests\TestCase;
 
 class NewsTest extends TestCase
 {
-    use RefreshDatabase;
-
-    public function testHomepageAvailable(): void
+    public function testNewsPageAvailable(): void
     {
-        $response = $this->get('/');
+        $response = $this->get(route('news.index'));
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function testCategoryNewsExists()
     {
-        $response = $this->get('/filter/2');
+        $response = $this->get(route('news.filter', 2));
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     public function testCategoryNewsNotExists()
     {
-        $response = $this->get('/filter/9999');
+        $response = $this->get(route('news.filter', 9999));
 
-        $response->assertStatus(404);
+        $response->assertNotFound();
+    }
+
+    public function testNewsExists()
+    {
+        $response = $this->get(route('news.show', 1));
+
+        $response->assertOk();
+    }
+
+    public function testNewsNotExists()
+    {
+        $response = $this->get(route('news.show', 9999));
+
+        $response->assertNotFound();
+    }
+
+    public function testNewsDatabaseNotEmpty()
+    {
+        $news = News::all();
+
+        $this->assertNotEmpty($news);
     }
 }
