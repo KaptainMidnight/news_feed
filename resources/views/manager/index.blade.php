@@ -32,9 +32,9 @@
                                 <td>
                                     <a href="{{ route('news.show', $headline->id) }}" class="view" title="" data-toggle="tooltip"
                                        data-original-title="View"><i class="bi bi-eye"></i></a>
-                                    <a href="#" class="edit" title="" data-toggle="tooltip"
+                                    <a href="{{ route('manager.edit', ['news' => $headline->id]) }}" class="edit" title="" data-toggle="tooltip"
                                        data-original-title="Edit"><i class="bi bi-pencil"></i></a>
-                                    <a href="#" class="delete" title="" data-toggle="tooltip"
+                                    <a href="{{ route('manager.destroy', $headline->id) }}" class="delete" title="" data-toggle="tooltip"
                                        data-original-title="Delete"><i class="bi bi-trash"></i></a>
                                 </td>
                             </tr>

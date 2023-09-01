@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');
+    Route::get('/manager/{news}/edit', [ManagerController::class, 'edit'])->name('manager.edit');
+    Route::post('/manager/{news}', [ManagerController::class, 'update'])->name('manager.update');
+    Route::get('/manager/{news}', [ManagerController::class, 'destroy'])->name('manager.destroy');
 });
 Route::get('/', [NewsController::class, 'index'])->name('news.index');
 Route::get('/{news}', [NewsController::class, 'show'])->name('news.show');
